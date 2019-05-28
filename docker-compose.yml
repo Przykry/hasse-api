@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  hassediagramservice:
-    image: ${DOCKER_REGISTRY}hassediagramservice
-    build:
-      context: .
-      dockerfile: HasseDiagramService/Dockerfile

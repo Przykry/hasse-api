@@ -81,12 +81,13 @@ namespace HasseDiagramService.Services
 
         public IHasseDiagramService TransitiveReduction()
         {
+            var checkList = _relations.ToList();
             foreach (var x in _nodes)
                 foreach (var y in _nodes)
                     foreach (var z in _nodes)
                         if (!(x.Id == y.Id && y.Id == z.Id) && !(x.Id == y.Id && x.Id == z.Id))
-                            if (_relations.Any(edge => edge.From == x.Id && edge.To == y.Id) &&
-                                _relations.Any(edge => edge.From == y.Id && edge.To == z.Id))
+                            if (checkList.Any(edge => edge.From == x.Id && edge.To == y.Id) &&
+                                checkList.Any(edge => edge.From == y.Id && edge.To == z.Id))
                                 _relations.RemoveAll(edge => edge.From == x.Id && edge.To == z.Id);
             return this;
         }

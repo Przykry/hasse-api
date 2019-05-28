@@ -5,10 +5,11 @@ EXPOSE 44324
 
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
-COPY HasseDiagramService/HasseDiagramService.csproj HasseDiagramService/
+COPY ./HasseDiagramService/HasseDiagramService.csproj HasseDiagramService/
 RUN dotnet restore HasseDiagramService/HasseDiagramService.csproj
 COPY . .
 WORKDIR /src/HasseDiagramService
+RUN ls
 RUN dotnet build HasseDiagramService.csproj -c Release -o /app
 
 FROM build AS publish
